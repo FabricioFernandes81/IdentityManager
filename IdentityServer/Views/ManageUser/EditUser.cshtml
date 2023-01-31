@@ -1,0 +1,110 @@
+﻿@model IdentityServer.Models.UsersViewModel
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form asp-action="EditUser" asp-controller="ManageUser">
+            <input type="hidden" asp-for="Id" />
+            <div class="modal-header">
+                <h2>Editar Usuário</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="perfil-tab" data-toggle="tab" data-target="#perfil" type="button" role="tab" aria-controls="perfil" aria-selected="true">Perfil do Usuário</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="permissoes-tab" data-toggle="tab" data-target="#permissoes" type="button" role="tab" aria-controls="permissoes" aria-selected="false">Permissões</button>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content " id="myTabContent" style="padding-top:10px">
+                        <div class="tab-pane fade show active" id="perfil" role="tabpanel" aria-labelledby="perfil-tab">
+
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" asp-for="Nome" placeholder="Full name">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-user"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="email" class="form-control" asp-for="Email" placeholder=" Email">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-envelope"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" asp-for="Celular" placeholder=" Telefone">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa fa-phone"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="permissoes" role="tabpanel" aria-labelledby="permissoes-tab">
+                            <div class="treeview-1">
+                                <div class="tree_main">
+                                    <ul id="bs_l_1" class="sub_ul">
+                                        <li id="bf_1">
+                                            <span class="plus">&nbsp;</span>
+                                            <input type="checkbox" id="c_bf_1" />
+                                            <span>Permissões </span>
+                                            <ul id="bf_l_1" class="inner_ul">
+                                                @for (var i = 0; i < Model.Permisoes.Count; i++)
+                                                {
+                                                <li id="io_@i">
+                                                        <input type="hidden" asp-for="@Model.Permisoes[i].RoleId" />
+                                                        <input type="hidden" asp-for="@Model.Permisoes[i].RoleName" />
+                                                        <input type="checkbox" asp-for="@Model.Permisoes[i].Selected" id="c_io_@i" />
+                                                        <span>@Model.Permisoes[i].RoleName </span>
+                                                </li>
+                                                }
+                                            </ul>
+                                </div>
+                                
+
+
+                                @*for (var i = 0; i < Model.Permisoes.Count; i++)
+                                {
+
+                                <li>
+                                <input type="hidden" asp-for="@Model.Permisoes[i].RoleId" />
+                                <input type="hidden" asp-for="@Model.Permisoes[i].RoleName" />
+                                <input asp-for="@Model.Permisoes[i].Selected" class="form-check-input" />
+                                <label class="form-check-label" asp-for="@Model.Permisoes[i].Selected">
+                                @Model.Permisoes[i].RoleName</label>
+                                </li>
+                                }*@
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Ativo</label>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Bloquear conta após tentativas de login malsucedidas</label>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
+
+</div>
