@@ -7,7 +7,7 @@
 
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 200px; float:left; margin-right:10px;">
-                        <button type="submit" class="btn btn-primary col start">
+                        <button type="button" class="btn btn-primary col start addUser">
                             <i class="fas fa-plus"></i>
                             <span>Adicionar Usuários</span>
                         </button></div>
@@ -79,9 +79,9 @@
                                              Editar</a>
                                            
                                         <div class="dropdown-divider"></div>
-                                        
-                                        <a class="dropdown-item" href="#">
-                                                <i class="fa fa-trash"></i>
+
+                                            <a class="dropdown-item DeleteUser" data-toggle="modal" data-target="#modal-info" data-id="@users.Id">
+                                                <i class="fa fa-trash "></i>
                                              Excluir</a>
 
                                     </div>

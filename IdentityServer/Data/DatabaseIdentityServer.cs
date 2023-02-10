@@ -55,29 +55,29 @@ namespace IdentityServer.Data
 
             if (_adminRole != null)
             {
-                if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c")))
+             if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("7CD0D373-C57D-4C70-AA8C-22791983FE1C")))
                 {
-                    _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c") });
+                    _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("7CD0D373-C57D-4C70-AA8C-22791983FE1C") });
                 }
 
-               /* if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c")))
+               if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("3C1702C5-C34F-4468-B807-3A1D5545F734")))
                 {
-                    _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c") });
+                    _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("3C1702C5-C34F-4468-B807-3A1D5545F734") });
                 }
-                if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c")))
+                if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("283264D6-0E5E-48FE-9D6E-B1599AA0892C")))
                 {
-                    _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c") });
+                    _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("283264D6-0E5E-48FE-9D6E-B1599AA0892C") });
                 }
-                if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c")))
+                if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("913BF559-DB46-4072-BD01-F73F3C92E5D5")))
                 {
-                    _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c") });
-                }*/
-                /*       if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c")))
-                       {
-                           _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c") });
-                       }
+                    _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("913BF559-DB46-4072-BD01-F73F3C92E5D5") });
+                }
+                if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe2C")))
+                  {
+                   _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe2C") });
+                  }
 
-                       if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c")))
+                /*       if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c")))
                        {
                            _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c") });
                        }
@@ -100,8 +100,8 @@ namespace IdentityServer.Data
                        if (!_dbContext.PermissionMenuRole.Any(x => x.RoleId == _adminRole.Id && x.NavigationMenuId == new Guid("94C22F11-6DD2-4B9C-95F7-9DD4EA1002E6")))
                        {
                            _dbContext.PermissionMenuRole.Add(new PermissionMenuRole() { RoleId = _adminRole.Id, NavigationMenuId = new Guid("94C22F11-6DD2-4B9C-95F7-9DD4EA1002E6") });
-                       }
-                  //     _dbContext.SaveChanges();*/
+                       }*/
+                      // _dbContext.SaveChanges();
             }
 
             _dbContext.SaveChanges();
@@ -154,8 +154,33 @@ namespace IdentityServer.Data
                     ControllerName = "",
                     ActionName = "",
                     ParentMenuId = null,
+                    GroupMenu = null,
+                    isParent = true,
 
                 },
+
+                 new NavigationMenu()
+                {
+                    Id = new Guid("F704BDFD-D3EA-4A6F-9463-DA47ED3657AB"),
+                    Name = "Servidor de Identidade",
+                    ControllerName = "",
+                    ActionName = "",
+                    ParentMenuId = null,
+                    GroupMenu = null,
+                    isParent = false,
+
+                },
+               /*      new NavigationMenu()
+                {
+                    Id = new Guid("F704BDFD-D3EA-4A6F-9463-DA47ED3657BC"),
+                    Name = "Principal",
+                    ControllerName = "",
+                    ActionName = "",
+                    ParentMenuId = null,
+                    GroupMenu = null,
+                    isParent = false,
+
+                },*/
                 new NavigationMenu()
                 {
                     Id = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
@@ -163,7 +188,8 @@ namespace IdentityServer.Data
                     ControllerName = "ManageUser",
                     ActionName = "Users",
                     ParentMenuId = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
-
+                    GroupMenu = new Guid("13e2f21a-4283-4ff8-bb7a-096e7b89e0f0"),
+                    isParent = true,
                 },
                 new NavigationMenu()
                 {
@@ -171,17 +197,19 @@ namespace IdentityServer.Data
                     Name = "Adicionar Usuários",
                     ControllerName = "ManageUser",
                     ActionName = "CreateUser",
-                    ParentMenuId = null //new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
-
+                    ParentMenuId = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
+                    GroupMenu = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
+                    isParent = false,
                 },
-                 new NavigationMenu()
+                new NavigationMenu()
                 {
                     Id = new Guid("913BF559-DB46-4072-BD01-F73F3C92E5D5"),
                     Name = "Editar Usuário",
                     ControllerName = "ManageUser",
                     ActionName = "EditUser",
-                    ParentMenuId = null //new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
-
+                    ParentMenuId = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
+                    GroupMenu = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
+                    isParent = false,
                 },
                   new NavigationMenu()
                 {
@@ -189,18 +217,32 @@ namespace IdentityServer.Data
                     Name = "Deletar Usuário",
                     ControllerName = "ManageUser",
                     ActionName = "DeleteUser",
-                    ParentMenuId = null //new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
-
+                    ParentMenuId = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
+                    GroupMenu = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
+                    isParent = false,
                 },
-                 /*new NavigationMenu()
+                    new NavigationMenu()
                 {
-                    Id = new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c"),
-                    Name = "Permisões",
+                    Id = new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe2C"),
+                    Name = "Bloquear / Desbloquear Usuário",
+                    ControllerName = "ManageUser",
+                    ActionName = "DeleteUser",
+                    ParentMenuId = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
+                    GroupMenu = new Guid("283264d6-0e5e-48fe-9d6e-b1599aa0892c"),
+                    isParent = false,
+                },
+
+                  new NavigationMenu()
+                {
+                    Id = new Guid("94C22F11-6DD2-4B9C-95F7-9DD4EA1002E6"),
+                    Name = "Roles",
                     ControllerName = "ManageUser",
                     ActionName = "Roles",
-                    ParentMenuId = new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c"),
-
-                }*/
+                    ParentMenuId = null,
+                    GroupMenu = new Guid("13e2f21a-4283-4ff8-bb7a-096e7b89e0f0"),
+                    isParent = false,
+                },
+                
               /*  new NavigationMenu()
                 {
                     Id = new Guid("7cd0d373-c57d-4c70-aa8c-22791983fe1c"),

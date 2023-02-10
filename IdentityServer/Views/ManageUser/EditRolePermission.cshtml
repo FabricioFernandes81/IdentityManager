@@ -15,27 +15,86 @@
                     <input name="id" type="hidden" value="@TempData["id"]" />
 
                     <div class="tree_main">
-                       <ul id="bs_main" class="main_ul">
-                         @for (var i = 0; i < Model.Count; i++)
+                        <ul id="bs_main" class="main_ul">
+                            @for (int i = 0; i < Model.Count; i++)
                             {
-                                
-                                <li>
-                                    <input type="checkbox" asp-for="@Model[i].Permitted" />
-                                    <label style="margin-left:10px;" asp-for="@Model[i].Permitted">@Model[i].Name</label>
-                                    <input type="hidden" asp-for="@Model[i].Id" />
-                                    <input type="hidden" asp-for="@Model[i].Name" />
-                                </li>
-                            
-
+                                int index = i;
+                                if (Model[i].isParent == false && Model[i].GroupMenu == null)
+                                {
+                                    <li id="bs_1">
+                                        <span>&nbsp;</span>
+                                        <input type="checkbox" asp-for="@Model[index].Permitted" id="c_bs_1" />
+                                        <input type="hidden" asp-for="@Model[index].Id" />
+                                        <input type="hidden" asp-for="@Model[index].Name" />
+                                        <span>@Model[i].Name</span>
+                                    </li>
+                                }
+                                else
+                                {
+                                    if (Model[i].isParent == true && Model[i].GroupMenu == null)
+                                    {
+                                        <li id="bs_1">
+                                            <span class="plus">&nbsp;</span>
+                                            <input type="checkbox" asp-for="@Model[index].Permitted" id="c_bs_1" />
+                                            <input type="hidden" asp-for="@Model[index].Id" />
+                                            <input type="hidden" asp-for="@Model[index].Name" />
+                                            <span>@Model[i].Name</span>
+                                            <ul id="bs_l_1" class="sub_ul" style="display: none">
+                                        @for (int j = 0; j < Model.Count; j++)
+                                    {
+                                                    index = j;
+                                                    if (Model[j].GroupMenu == Model[i].Id)
+                                    {
+                                                        if (Model[j].isParent == true)
+                                    {
+                                    <li id="bf_1">
+                                                    <span class="plus">&nbsp;</span>
+                                                                <input type="checkbox" asp-for="@Model[index].Permitted" id="c_bf_1" />
+                                                                <input type="hidden" asp-for="@Model[index].Id" />
+                                                                <input type="hidden" asp-for="@Model[index].Name" />
+                                                                <span>@Model[j].Name</span>
+                                                    <ul id="bf_l_1" style="display: none" class="inner_ul">
+                                                    @for (int k = 0; k < Model.Count; k++)
+                                            {
+                                                     index = k;
+                                                                        if (Model[k].GroupMenu == Model[j].Id)
+                                            {
+                                            <li id="io_1">
+                                                                                <input type="checkbox" asp-for="@Model[index].Permitted" id="c_io_1" />
+                                                                                <input type="hidden" asp-for="@Model[index].Id" />
+                                                                                <input type="hidden" asp-for="@Model[index].Name" />
+                                                                                <span>@Model[k].Name</span>
+                                                        </li>
+                                                        }
+                                                        }
+                                                    </ul>
+                                                </li>
+                                                }
+                                                else
+                                                {
+                                                <li id="io_1">
+                                                 <input type="checkbox" asp-for="@Model[index].Permitted" id="c_io_1" />
+                                                                <input type="hidden" asp-for="@Model[index].Id" />
+                                                                <input type="hidden" asp-for="@Model[index].Name" />
+                                                 <span>@Model[j].Name</span>
+                                                </li>
+                                                }
+                                                }
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                }
                             }
-                             
-                            </ul> 
-                     
+                        </ul>
+                        
+
+
                     </div>
-                          
-                    
+
+
                 </div>
-             
+
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary">Cancelar</button>
@@ -43,5 +102,5 @@
             </div>
         </form>
     </div>
-    
+
 </div>

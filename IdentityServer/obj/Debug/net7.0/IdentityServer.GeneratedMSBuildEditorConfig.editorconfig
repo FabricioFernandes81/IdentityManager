@@ -52,6 +52,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlVXNlclxDcmVhdGVSb2xlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/IdentityManager/IdentityServer/Views/ManageUser/CreateUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlVXNlclxDcmVhdGVVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/IdentityManager/IdentityServer/Views/ManageUser/DeleteUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlVXNlclxEZWxldGVVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/IdentityManager/IdentityServer/Views/ManageUser/EditRolePermission.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlVXNlclxFZGl0Um9sZVBlcm1pc3Npb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,7 +1,7 @@
 ﻿
 $(function () {
     $(".Logout").click(function () {
-        //   alert("Teste Click");
+      
         $("#modal").load("/Account/logoff", function () {
             $("#modal").modal();
         })
@@ -25,6 +25,11 @@ $(function () {
         });
 
     });
+    $(".addUser").click(function () {
+        $("#modal").load("/ManageUser/CreateUser", function () {
+            $("#modal").modal();
+        })
+    });
 
     $(".EditUser").click(function () {
         var id = $(this).attr("data-id");
@@ -33,7 +38,20 @@ $(function () {
         });
 
     });
+$(".DeleteUser").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modal").load("/ManageUser/DeleteUser?id=" + id, function () {
+            $("#modal").modal();
+        });
 
+    });
+
+});
+
+$(document).ready(function () {
+  /*  $(".main_ul input").each(function () {
+        alert("teste");
+    });*/
 });
 
 $(document).ready(function () {
@@ -41,14 +59,14 @@ $(document).ready(function () {
         $(this).toggleClass("minus").siblings("ul").toggle();
     })
 
-    $("input[type=checkbox]").click(function () {
+ /* $("input[type=checkbox]").click(function () {
         //alert($(this).attr("id"));
         //var sp = $(this).attr("id");
         //if (sp.substring(0, 4) === "c_bs" || sp.substring(0, 4) === "c_bf") {
         $(this).siblings("ul").find("input[type=checkbox]").prop('checked', $(this).prop('checked'));
         //}
-    })
-
+    })*/
+    /*
     $("input[type=checkbox]").change(function () {
         var sp = $(this).attr("id");
         if (sp.substring(0, 4) === "c_io") {
@@ -90,10 +108,11 @@ function check_fst_lvl(dd) {
         $('#' + ss).siblings("input[type=checkbox]").prop('checked', false);
     }
 
-}
+}*/
 
-function pageLoad() {
-    $(".plus").click(function () {
-        $(this).toggleClass("minus").siblings("ul").toggle();
-    })
-}
+    function pageLoad() {
+        $(".plus").click(function () {
+            $(this).toggleClass("minus").siblings("ul").toggle();
+        })
+    }
+})
