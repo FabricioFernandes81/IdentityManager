@@ -2,7 +2,9 @@
 
 <div class="modal-dialog">
     <div class="modal-content">
-        <form asp-action="EditRolePermission">
+
+        @using (Html.BeginForm("EditRolePermission", "ManageUser", FormMethod.Post))
+        {
             <div class="modal-header">
                 <h2>Permissão</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
