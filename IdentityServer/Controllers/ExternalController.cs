@@ -43,7 +43,7 @@ namespace IdentityServer.Controllers
             return Challenge(props, scheme);
         }
 
-        //https://github.com/T0shik/aspnetcore3-authentication/blob/master/IdentityServer/Controllers/AuthController.cs
+       
         [HttpGet]
         public async Task<IActionResult> ExteranlLoginCallback()
 

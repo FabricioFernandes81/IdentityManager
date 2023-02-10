@@ -20,5 +20,9 @@ namespace IdentityServer.Models
 
         [NotMapped]
         public bool Permitted { get; set; }
+
+        public Guid? GroupMenu { get; set; }
+        public bool isParent { get; set; }
+        
     }
 }

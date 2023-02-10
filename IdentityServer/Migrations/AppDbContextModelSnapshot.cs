@@ -22,47 +22,6 @@ namespace IdentityServer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("IdentityServer.Models.NavigationMenu", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ActionName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ControllerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ParentMenuId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentMenuId");
-
-                    b.ToTable("NavigationMenu");
-                });
-
-            modelBuilder.Entity("IdentityServer.Models.PermissionMenuRole", b =>
-                {
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("NavigationMenuId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("RoleId", "NavigationMenuId");
-
-                    b.HasIndex("NavigationMenuId");
-
-                    b.ToTable("PermissionMenuRole");
-                });
-
             modelBuilder.Entity("IdentityServer.Context.AppAplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -130,6 +89,53 @@ namespace IdentityServer.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.NavigationMenu", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ActionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ControllerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("GroupMenu")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ParentMenuId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("isParent")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentMenuId");
+
+                    b.ToTable("NavigationMenu");
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.PermissionMenuRole", b =>
+                {
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("NavigationMenuId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("RoleId", "NavigationMenuId");
+
+                    b.HasIndex("NavigationMenuId");
+
+                    b.ToTable("PermissionMenuRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

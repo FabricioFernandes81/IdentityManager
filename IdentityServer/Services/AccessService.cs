@@ -63,7 +63,11 @@ namespace IdentityServer.Services
                                    Name = m.Name,
                                    ActionName = m.ActionName,
                                    ControllerName = m.ControllerName,
-                                   Permitted = rm.RoleId == id
+                                   GroupMenu = m.GroupMenu,
+                                   isParent = m.isParent,
+                                   Permitted = rm.RoleId == id,
+                                   
+
                                }).AsNoTracking().ToListAsync();
             return itens;
         }
