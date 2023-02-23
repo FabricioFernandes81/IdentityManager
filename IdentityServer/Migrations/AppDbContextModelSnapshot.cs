@@ -91,6 +91,106 @@ namespace IdentityServer.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("IdentityServer.Models.ClientGrantTypes", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("GrandType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("ClientGrantTypes");
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.ClientScopes", b =>
+                {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Scope")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("ClientScopes");
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.ClientSecrets", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescriptionSecret")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Expiration")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Secret")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Valor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("ClientSecrets");
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.Clients", b =>
+                {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ClientId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientLogo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("RequestConsent")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("IdentityServer.Models.NavigationMenu", b =>
                 {
                     b.Property<Guid>("Id")
@@ -136,6 +236,72 @@ namespace IdentityServer.Migrations
                     b.HasIndex("NavigationMenuId");
 
                     b.ToTable("PermissionMenuRole");
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.ResourceClients", b =>
+                {
+                    b.Property<string>("ClienId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ClientsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ClienId", "ClientId");
+
+                    b.HasIndex("ClientsId");
+
+                    b.ToTable("ResourceClients");
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.ResourcesApi", b =>
+                {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Display")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsDescoberta")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ResourceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ResourcesApis");
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.UriClients", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Uri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("callSing")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("UriClients");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -290,6 +456,36 @@ namespace IdentityServer.Migrations
                     b.HasDiscriminator().HasValue("AppAplicationRoles");
                 });
 
+            modelBuilder.Entity("IdentityServer.Models.ClientGrantTypes", b =>
+                {
+                    b.HasOne("IdentityServer.Models.Clients", "Clients")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Clients");
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.ClientScopes", b =>
+                {
+                    b.HasOne("IdentityServer.Models.Clients", "Clients")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Clients");
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.ClientSecrets", b =>
+                {
+                    b.HasOne("IdentityServer.Models.Clients", "Clients")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Clients");
+                });
+
             modelBuilder.Entity("IdentityServer.Models.NavigationMenu", b =>
                 {
                     b.HasOne("IdentityServer.Models.NavigationMenu", "ParentNavigationMenu")
@@ -309,6 +505,26 @@ namespace IdentityServer.Migrations
                         .IsRequired();
 
                     b.Navigation("NavigationMenu");
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.ResourceClients", b =>
+                {
+                    b.HasOne("IdentityServer.Models.Clients", "Clients")
+                        .WithMany()
+                        .HasForeignKey("ClientsId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Clients");
+                });
+
+            modelBuilder.Entity("IdentityServer.Models.UriClients", b =>
+                {
+                    b.HasOne("IdentityServer.Models.Clients", "Clients")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Clients");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -50,6 +50,7 @@ namespace IdentityServer.Data
                 }
             }
 
+            
            // _dbContext.SaveChanges();
             var _adminRole = _roleManager.Roles.Where(x => x.Name == IdentityConfiguration.Admin).FirstOrDefault();
 
@@ -103,7 +104,33 @@ namespace IdentityServer.Data
                        }*/
                       // _dbContext.SaveChanges();
             }
+            var Clientes = CreateClients();
+            foreach (var item in Clientes)
+            {
+                if (_dbContext?.Clients?.Any(n => n.ClientId == item.ClientId) == false)
+                {
+                    _dbContext.Clients.Add(item);
+                }
+            }
+            
+            if (!_dbContext.ClientScopes.Any(p=>p.Id == new Guid("13e2f21a-4283-4ff8-bb7a-096e7b89e0f0"))) 
+            {
+                _dbContext.ClientScopes.Add(new ClientScopes() { Id = Guid.NewGuid(),ClientId = new Guid("13e2f21a-4283-4ff8-bb7a-096e7b89e0f0"),Scope="scope1" });
+                
+            }
+            if (!_dbContext.ClientScopes.Any(p => p.Id == new Guid("13e2f21B-4283-4ff8-bb7a-096e7b89e0f0")))
+            {
+                _dbContext.ClientScopes.Add(new ClientScopes() { Id = Guid.NewGuid(), ClientId = new Guid("13e2f21B-4283-4ff8-bb7a-096e7b89e0f0"), Scope = "scope1" });
+            }
 
+            var ResouceApi = CreateResourceApi();
+            foreach (var item in ResouceApi)
+            {
+                if (_dbContext?.ResourcesApis?.Any(n => n.Name == item.Name) == false)
+                {
+                    _dbContext.ResourcesApis.Add(item);
+                }
+            }
             _dbContext.SaveChanges();
         }
         public void InicializeUserMaster()
@@ -142,6 +169,55 @@ namespace IdentityServer.Data
 
                 }
         
+        }
+        public static List<Clients> CreateClients()
+        {
+            return new List<Clients>()
+        {
+          new Clients()
+          {
+              Id = new Guid("13e2f21a-4283-4ff8-bb7a-096e7b89e0f0"),
+              ClientId = "teste1",
+              ClientName = "Nome Client",
+              ClientLogo = "http://localhost:122/logo",
+              ClientUrl = "http://localhost:122",
+              Description = "Descricção de Api..."
+
+          },
+          new Clients()
+          {
+              Id = new Guid("13e2f21B-4283-4ff8-bb7a-096e7b89e0f0"),
+              ClientId = "teste2",
+              ClientName = "nome",
+              ClientLogo = "http://localhost:134",
+              ClientUrl = "http://localhost:127",
+              Description = "Decrição Cliente"
+          }
+          };
+        }
+
+        public static List<ResourcesApi> CreateResourceApi()
+        {
+            return new List<ResourcesApi>()
+        {
+          new ResourcesApi()
+          {
+              Id= Guid.NewGuid(),
+              Name = "IdentitySerser",
+              Display = "API Teste",
+              Descricao = "Teste de API",
+              IsDescoberta = true,
+          },
+          new ResourcesApi()
+          {
+              Id= Guid.NewGuid(),
+              Name = "SerserMobile",
+              Display = "Client Mobile",
+              Descricao = "Mobile API",
+              IsDescoberta = true,
+          }
+         };
+
         }
         public static List<NavigationMenu> GetPermissions()
         {

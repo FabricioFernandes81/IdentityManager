@@ -1,0 +1,379 @@
+﻿@model IdentityServer.Models.ClientsViewModel;
+<div class="modal-dialog modal-lg" tabindex="-1">
+    <div class="modal-content">
+         <form asp-action="AddClients" asp-controller="IdentityServer" id="form">
+            <div class="modal-header">
+                <h2>Editar Usuário</h2>
+               
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+
+            </div>
+
+        <div class="modal-body">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic-tab-pane" type="button" role="tab" aria-controls="basic-tab-pane">Básico</a>
+                </li>
+               <!-- <li class="nav-item">
+                    <a class="nav-link" id="uris-tab" data-bs-toggle="tab" data-bs-target="#uris-tab-pane" type="button" role="tab" aria-controls="uris-tab-pane">Uris</a>
+                </li>-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Url da Aplicação</a>
+                    <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" id="UriCallBack-tab" data-bs-toggle="tab" data-bs-target="#UriCallBack-tab-pane" type="button" role="tab" aria-controls="UriCallBack-tab-pane">CallBack</a></li>
+                            <li><a class="dropdown-item" id="UrlSingOut-tab" data-bs-toggle="tab" data-bs-target="#UrlSingOut-tab-pane" type="button" role="tab" aria-controls="UrlSingOut-tab-pane">Singout</a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="secret-tab" data-bs-toggle="tab" data-bs-target="#secret-tab-pane" type="button" role="tab" aria-controls="secret-tab-pane">Segredos</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Recursos</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" id="resoucesApi-tab" data-bs-toggle="tab" data-bs-target="#resoucesApi-tab-pane" type="button" role="tab" aria-controls="resoucesApi-tab-pane">Recursos de API</a></li>
+                        <li><a class="dropdown-item" id="resoucesInden-tab" data-bs-toggle="tab" data-bs-target="#resoucesInden-tab-pane" type="button" role="tab" aria-controls="resoucesInden-tab-pane">Recursos de Identidade</a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="Avanced-tab" data-bs-toggle="tab" data-bs-target="#Avanced-tab-pane" type="button" role="tab" aria-controls="Avanced-tab-pane">Grant Type</a>
+                </li>
+
+            </ul>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="basic-tab-pane" role="tabpanel" aria-labelledby="basic-tab" tabindex="0">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="floatingInput" placeholder="@Html.DisplayNameFor(model => model.ClientId)" asp-for="ClientId">
+                            <label for="floatingInput">@Html.DisplayNameFor(model => model.ClientId)</label>
+                        </div>
+                        <div class="form-floating  mb-3">
+                            <input  class="form-control" id="floatingName" placeholder="@Html.DisplayNameFor(model => model.ClientName)" asp-for="ClientName">
+                            <label for="floatingName" >@Html.DisplayNameFor(model => model.ClientName)</label>
+                        </div>
+
+                        <div class="form-floating  mb-3">
+                            <input class="form-control" id="floatingDescrition" placeholder="@Html.DisplayNameFor(model => model.Description)" asp-for="Description">
+                            <label for="floatingDescrition">@Html.DisplayNameFor(model => model.Description)</label>
+                        </div>
+
+                        <div class="form-floating  mb-3">
+                            <input class="form-control" id="floatingUrl" placeholder="@Html.DisplayNameFor(model => model.ClientUrl)" asp-for="ClientUrl">
+                            <label for="floatingUrl">@Html.DisplayNameFor(model => model.ClientUrl)</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="floatingUri" placeholder="@Html.DisplayNameFor(model => model.ClientLogo)" asp-for="ClientLogo">
+                            <label for="floatingUri">@Html.DisplayNameFor(model => model.ClientLogo)</label>
+                        </div>
+                        <div class="form-check form-switch mb-3" style="margin-left: 20px;">
+                            <input  class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" asp-for="RequestConsent">
+                            <label class="form-check-label" for="flexSwitchCheckChecked">@Html.DisplayNameFor(model => model.RequestConsent)</label>
+                           
+                            
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="UriCallBack-tab-pane" role="tabpanel" aria-labelledby="UriCallBack-tab" tabindex="0">
+                            <h3>URL de retorno</h3>
+                            <div class="pt-3 pb-2 clearfix">
+                                <div class="mb-3"><label class="form-label form-label" for="SampleCallbackUri">Uri</label>
+                                    <input type="text" id="SampleCallbackUri" name="SampleCallbackUri" value="" class="form-control valid" aria-invalid="false">
+                                  
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="SampleCallbackUri" data-valmsg-replace="true"></span>
+                                </div>
+                                <button id="AddNewCallbackUriButton" class="float-end mb-2 btn btn-success" type="button" data-busy-text="Processando..."><i class="fa fa-plus"></i> Adicionar novo</button>
+                            </div>
+                            <div class="table-responsive-sm">
+                            
+                            <table id="CallbackUri" style="display: none;" class="table table-striped">
+                            <tbody id="CallbackUriTableBodyId">
+                            
+                            </tbody>
+
+                            </table>
+                            </div>
+                       
+                    </div>
+                    <div class="tab-pane fade" id="UrlSingOut-tab-pane" role="tabpanel" aria-labelledby="UrlSingOut-tab" tabindex="0">
+                         <h3>URL de retorno</h3>
+                            <div class="pt-3 pb-2 clearfix">
+                            <div class="mb-3">
+                                <label class="form-label form-label" for="SampleSignoutUri">Uri</label>
+                                <input type="text" id="SampleSignoutUri" name="SampleSignoutUri" value="" class="form-control valid" aria-invalid="false">
+                                  
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="SampleSignoutUri" data-valmsg-replace="true"></span>
+                                </div>
+                            <button id="AddNewSignoutUriButton" class="float-end mb-2 btn btn-success" type="button" data-busy-text="Processando..."><i class="fa fa-plus"></i> Adicionar novo</button>
+                            </div>
+                            <div class="table-responsive-sm">
+                            
+                            <table id="CallSignoutUri" style="display: none;" class="table table-striped">
+                                <tbody id="CallSignoutUriUriTableBodyId">
+                            
+                            </tbody>
+
+                            </table>
+                            </div>
+                    </div>
+                    <div class="tab-pane fade" id="secret-tab-pane" role="tabpanel" aria-labelledby="secret-tab" tabindex="0">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example" asp-for="clientsSecrets.Type">
+                                        <option selected="selected" value="SharedSecret">Shared Secret</option>
+                                        <option value="X509Thumbprint">X509 Thumbprint</option>
+                                    </select>
+                                    <label for="floatingSelect">Works with selects</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating  mb-3">
+                                    <input asp-for="clientsSecrets.DescriptionSecret" class="form-control" id="floatingName" placeholder="@Html.DisplayNameFor(model => model.clientsSecrets.DescriptionSecret)">
+                                    <label asp-for="clientsSecrets.DescriptionSecret" for="floatingName">@Html.DisplayNameFor(model => model.clientsSecrets.DescriptionSecret)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating  mb-3">
+                                    <input class="form-control" id="floatingName" asp-for="clientsSecrets.Valor" placeholder="@Html.DisplayNameFor(model => model.clientsSecrets.Valor)">
+                                    <label for="floatingName" asp-for="clientsSecrets.Valor">@Html.DisplayNameFor(model => model.clientsSecrets.Valor)</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating  mb-3">
+                                    <input asp-for="clientsSecrets.Expiration" class="form-control" id="floatingName" placeholder="@Html.DisplayNameFor(model => model.clientsSecrets.Expiration)">
+                                    <label asp-for="clientsSecrets.Expiration" for="floatingName">@Html.DisplayNameFor(model => model.clientsSecrets.Expiration)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="resoucesApi-tab-pane" role="tabpanel" aria-labelledby="resoucesApi-tab" tabindex="0">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card">
+                                    <div class="card-header">Assigned</div>
+                                    <div class="custom-body card-body">
+                                        <div class="d-grid gap-2">
+                                            @*foreach (var item in Model.apiResourceViews)
+                                            {
+                                                <div class="btn-group" style="display: none;" id="@Html.Raw(@item.Id)GroupId">
+                                                    <button type="button" class="ownedResource btn btn-primary btn-sm mb-1 mt-0 text-truncate text-start" id="@Html.Raw(@item.Id)OwnedId" data-bs-toggle="tooltip" data-bs-placement="top" title="" style="display: none;">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        @item.DisplayName
+
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary btn-sm mb-1 mt-0 dropdown-toggle dropdown-toggle-split btn-sm" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                                    <div class="dropdown-menu">
+                                                        <select class="form-select form-control valid" id="Client_ApiResourceScopes" multiple="multiple" name="Client_ApiResourceScopes" aria-invalid="false">
+                                                            <option value="@Html.Raw(@item.Id)"> @item.DisplayName</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            }*@
+                                            @for (int i = 0; i < Model.apiResourceViews.Count; i++)
+                                            {
+                                                <div class="btn-group" style="display: none;" id="@Html.Raw(i)GroupId">
+                                                    <button type="button" class="ownedResource btn btn-primary btn-sm mb-1 mt-0 text-truncate text-start" id="@Html.Raw(i)OwnedId" data-bs-toggle="tooltip" data-bs-placement="top" title="" style="display: none;">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        @Model.apiResourceViews[i].Display
+
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary btn-sm mb-1 mt-0 dropdown-toggle dropdown-toggle-split btn-sm" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                                    <div class="dropdown-menu">
+                                                        <select class="form-select form-control valid" multiple="multiple" asp-for="@Model.apiResourceViews[i].Name" aria-invalid="false">
+                                                            <option value="@Html.Raw(Model.apiResourceViews[i].Id)"> @Model.apiResourceViews[i].Display</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+
+                                <div class="card">
+                                    <div class="card-header">Available</div>
+                                    <div class="custom-body card-body">
+                                        <div class="d-grid gap-2">
+                                            @*foreach (var item in Model.apiResourceViews)
+                                            {
+
+                                                <button type="button" class="otherResource btn btn-outline-primary btn-sm mb-2 mt-0 text-truncate text-start" id="@Html.Raw(@item.Id)OtherId" data-bs-toggle="tooltip" data-bs-placement="top" title="" style="">
+                                                    <i class="fa fa-long-arrow-left "></i>
+                                                    @item.Display
+                                                </button>
+                                            }*@
+                                            @for (int i = 0; i<Model.apiResourceViews.Count; i++)
+                                            {
+                                                <button type="button" class="otherResource btn btn-outline-primary btn-sm mb-2 mt-0 text-truncate text-start" id="@Html.Raw(i)OtherId" data-bs-toggle="tooltip" data-bs-placement="top" title="" style="">
+                                                    <i class="fa fa-long-arrow-left "></i>
+                                                    @Model.apiResourceViews[i].Display
+                                                </button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="resoucesInden-tab-pane" role="tabpanel" aria-labelledby="resoucesInden-tab" tabindex="0">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="card">
+                                    <div class="card-header">Assigned</div>
+                                    <div class="custom-body card-body">
+
+                                        <div class="d-grid gap-2">
+                                            <button style="display: none;" type="button" class="ownedResource btn btn-primary btn-sm mb-2 mt-0 text-truncate text-start" id="2608cbda-45fd-df0a-d2d8-3a08113e71f6OwnedId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-right"></i>
+                                                Roles of the user
+                                            </button>
+                                        </div>
+                                        <input id="2608cbda-45fd-df0a-d2d8-3a08113e71f6InputId" type="text" name="Client.Scopes[0]" value="" hidden="">
+                                        <div class="d-grid gap-2">
+                                            <button style="display: none;" type="button" class="ownedResource btn btn-primary btn-sm mb-2 mt-0 text-truncate text-start" id="5d26bdc1-53b5-26c5-9143-3a08113e71d7OwnedId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-right"></i>
+                                                Your user identifier
+                                            </button>
+                                        </div>
+                                        <input id="5d26bdc1-53b5-26c5-9143-3a08113e71d7InputId" type="text" name="Client.Scopes[1]" value="" hidden="">
+                                        <div class="d-grid gap-2">
+                                            <button style="display: none;" type="button" class="ownedResource btn btn-primary btn-sm mb-2 mt-0 text-truncate text-start" id="6937ce29-8bb4-e753-024d-3a08113e71f0OwnedId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-right"></i>
+                                                Your postal address
+                                            </button>
+                                        </div>
+                                        <input id="6937ce29-8bb4-e753-024d-3a08113e71f0InputId" type="text" name="Client.Scopes[2]" value="" hidden="">
+                                        <div class="d-grid gap-2">
+                                            <button style="display: none;" type="button" class="ownedResource btn btn-primary btn-sm mb-2 mt-0 text-truncate text-start" id="6e6ec5e9-f26e-bdba-33a6-3a08113e71f3OwnedId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-right"></i>
+                                                Your phone number
+                                            </button>
+                                        </div>
+                                        <input id="6e6ec5e9-f26e-bdba-33a6-3a08113e71f3InputId" type="text" name="Client.Scopes[3]" value="" hidden="">
+                                        <div class="d-grid gap-2">
+                                            <button style="display: none;" type="button" class="ownedResource btn btn-primary btn-sm mb-2 mt-0 text-truncate text-start" id="727b5ea0-ae3f-c98e-2c3d-3a08113e71e8OwnedId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-right"></i>
+                                                User profile
+                                            </button>
+                                        </div>
+                                        <input id="727b5ea0-ae3f-c98e-2c3d-3a08113e71e8InputId" type="text" name="Client.Scopes[4]" value="" hidden="">
+                                        <div class="d-grid gap-2">
+                                            <button style="display: none;" type="button" class="ownedResource btn btn-primary btn-sm mb-2 mt-0 text-truncate text-start" id="b6650b6d-6295-35b7-6f4f-3a08113e71edOwnedId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-right"></i>
+                                                Your email address
+                                            </button>
+                                        </div>
+                                        <input id="b6650b6d-6295-35b7-6f4f-3a08113e71edInputId" type="text" name="Client.Scopes[5]" value="" hidden="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+
+                                <div class="card">
+                                    <div class="card-header">Available</div>
+                                    <div class="custom-body card-body">
+                                        <div class="d-grid gap-2">
+                                            <button type="button" data-name="role" class="otherResource btn btn-outline-primary btn-sm mb-2 mt-0 text-truncate text-start" id="2608cbda-45fd-df0a-d2d8-3a08113e71f6OtherId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-left "></i>
+                                                Roles of the user
+                                            </button>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <button type="button" data-name="openid" class="otherResource btn btn-outline-primary btn-sm mb-2 mt-0 text-truncate text-start" id="5d26bdc1-53b5-26c5-9143-3a08113e71d7OtherId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-left "></i>
+                                                Your user identifier
+                                            </button>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <button type="button" data-name="address" class="otherResource btn btn-outline-primary btn-sm mb-2 mt-0 text-truncate text-start" id="6937ce29-8bb4-e753-024d-3a08113e71f0OtherId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-left "></i>
+                                                Your postal address
+                                            </button>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <button type="button" data-name="phone" class="otherResource btn btn-outline-primary btn-sm mb-2 mt-0 text-truncate text-start" id="6e6ec5e9-f26e-bdba-33a6-3a08113e71f3OtherId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-left "></i>
+                                                Your phone number
+                                            </button>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <button type="button" data-name="profile" class="otherResource btn btn-outline-primary btn-sm mb-2 mt-0 text-truncate text-start" id="727b5ea0-ae3f-c98e-2c3d-3a08113e71e8OtherId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-left "></i>
+                                                User profile
+                                            </button>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <button type="button" data-name="email" class="otherResource btn btn-outline-primary btn-sm mb-2 mt-0 text-truncate text-start" id="b6650b6d-6295-35b7-6f4f-3a08113e71edOtherId" data-bs-toggle="tooltip" data-bs-placement="top" title="">
+                                                <i class="fa fa-long-arrow-left "></i>
+                                                Your email address
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="Avanced-tab-pane" role="tabpanel" aria-labelledby="Avanced-tab" tabindex="0">
+                        <div class="row">
+                            <div class="col">
+                                <div class="Col-12">
+                                    <label for="GrantType"></label>
+                                    <select class="form-select" id="GrantTypeSelect" aria-label="Floating label select example">
+                                        <option value="implicit">implicit</option>
+                                        <option value="authorization_code">authorization_code</option>
+                                        <option value="hybrid">hybrid</option>
+                                        <option value="client_credentials">client_credentials</option>
+                                        <option value="password">password</option>
+                                        <option value="custom">Custom</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3" id="GrantTypeCustomInputGroup" style="display: none;">
+                                        <input class="form-control" type="text" id="GrantTypeCustomInput" placeholder="Custom Grant Type">
+                                    </div>
+
+                                </div>
+                                <div class="col-12 mb-3">
+
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <button id="AddNewGrantTypeButton" class="btn btn-primary me-md-2" type="button">Adicionar</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <div class="table-responsive-sm">
+                                        <table id="GrantTypeTableId" style="display: none;" class="table table-striped">
+                                            <tbody id="GrantTypeTableBodyId">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                        <button class="btn btn-primary me-md-2" name="button" type="button">Cancelar</button>
+                        <button class="btn btn-primary" name="button" type="submit" value="Salvar">Salvar</button>
+                    </div>
+                </div>
+           </div>
+        </form>
+</div>
+
+</div>
+<input hidden id="CallbackUriStartIndex" value="0">
+<input hidden id="SignoutUriStartIndex" value="0">
+<input hidden id="GrantTypeStartIndex" value="0">
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>

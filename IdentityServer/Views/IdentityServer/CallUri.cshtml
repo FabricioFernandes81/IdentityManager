@@ -1,0 +1,15 @@
+﻿@model ClientsViewModel
+@for (int i = 0; i < Model.UriClient.Count; i++)
+{
+<tr>
+  <td>@Model.UriClient[i].Uri
+  </td>
+    <td>
+     <input hidden name="0" type="text">
+     <input hidden type="checkbox" name="1" value="0">
+     <input hidden type="text" name="2" value="0">
+     <button type="button" id="deleteCallbackUri" class="btn btn-danger btn-sm float-end deleteCallbackUri"> 
+         <i class="fa fa-trash"></i></button>
+     </td>
+</tr>
+}

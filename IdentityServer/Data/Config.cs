@@ -43,7 +43,9 @@ namespace IdentityServer.Data
                 {
                     ClientId = "vshop",
                     ClientSecrets = { new Secret("abracadabra#simsalabim".Sha256())},
-                    AllowedGrantTypes = GrantTypes.Code, //via codigo
+                    AllowedGrantTypes = GrantTypes.Code, //via codigo,
+                    ClientUri = "https://localhost",
+                    
                     RedirectUris = {"https://localhost:7165/signin-oidc"},//login
                     PostLogoutRedirectUris = {"https://localhost:7165/signout-callback-oidc"},//logout
                     AllowedScopes = new List<string>

@@ -48,6 +48,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/IdentityManager/IdentityServer/Views/IdentityServer/AddClients.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWRlbnRpdHlTZXJ2ZXJcQWRkQ2xpZW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/IdentityManager/IdentityServer/Views/IdentityServer/CallUri.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWRlbnRpdHlTZXJ2ZXJcQ2FsbFVyaS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/IdentityManager/IdentityServer/Views/IdentityServer/Clients.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWRlbnRpdHlTZXJ2ZXJcQ2xpZW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/IdentityManager/IdentityServer/Views/ManageUser/CreateRoles.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlVXNlclxDcmVhdGVSb2xlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -63,6 +63,8 @@ builder.Services.AddScoped<DatabaseIdentityServer>();
 builder.Services.AddScoped<IProfileService, ProfileAppService>();
 
 builder.Services.AddScoped<IAccesService, AccessService>();
+builder.Services.AddScoped<IResourceApiService, ResourceApiService>();
+builder.Services.AddScoped<IIdentityService, IdentityService>();
 builder.Services.AddScoped<IAuthorizationHandler, PermissionHandler>();
 builder.Services.AddSingleton<IAuthorizationPolicyProvider, AuthorizationPolicyProvider>();
 
